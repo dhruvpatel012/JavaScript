@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sheet-2 ( Phase-2)</title>
+</head>
+
+
+<body>
+
+    <main>
+        <h1 class="badeLog">Sheet-2 ( Phase-2)</h1>
+    </main>
+
+    <script>
+
+        // Swap the second and second-last element using indexing.
+        let arr = [10, 20, 30, 40, 50]
+
+        let temp = arr[1];
+        arr[1] = arr[3];
+        arr[3] = temp
+
+        console.log(arr);
+
+        console.log("----------------");
+
+        // Find the sum of all diagonal elements in a 3x3 matrix.
+
+        let matrix = [[1, 2, 3],
+        [4, 5, 6],
+        [7, 8, 9]];
+
+        let sum = 0;
+
+        for (let i = 0; i < matrix.length; i++) {
+            sum += matrix[i][i];
+        }
+
+        console.log(sum);
+
+        console.log("----------------");
+
+
+        // Add elements dynamically inside loop from another array.
+
+        let arr1 = [10, 20, 30, 40, 50];
+
+        let arr2 = [];
+
+        for (let i = 0; i < arr.length; i++) {
+            arr2.push(arr1[i]);
+        }
+
+        console.log(arr2);
+
+        console.log("----------------");
+
+
+        // Keep removing elements until array becomes empty.
+
+        let arr3 = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+
+        while (arr3.length > 0) {
+            arr3.pop()
+        }
+
+        console.log(arr3);
+
+        console.log("----------------");
+
+
+        // Insert multiple elements at beginning without replacing existing ones.
+
+        let arr4 = ["dhruv", "deep", "dirgh", "divyakumar"];
+
+        arr4.unshift("patel", "pandya", "maheshwari", "patel");
+
+        console.log(arr4);
+
+        console.log("----------------");
+
+
+        // Remove first element repeatedly until only 2 elements remain.
+
+        let arr5 = [40, 50, 60, 70, 80, 90, 100];
+
+        while (arr5.length > 2) {
+            arr5.shift();
+        }
+        console.log(arr5);
+
+        console.log("----------------");
+
+
+        // Replace 3 middle elements with 5 new values.
+
+        let arr6 = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+
+        arr6.splice(3, 3, 10, 11, 12, 13, 14)
+
+        console.log(arr6);
+
+        console.log("----------------");
+
+
+        // Reverse only first half of array. ( Manual swapping )
+
+        let brr = [1, 2, 3, 4, 5, 6, 7, 8];
+
+        let half = brr.length / 2;
+
+        for (let i = 0; i < half / 2; i++) {
+            let temp = brr[i];
+            brr[i] = brr[half - 1 - i];
+            brr[half - 1 - i] = temp;
+        }
+
+        console.log(brr);
+
+        console.log("----------------");
+
+
+        //  Sort array so even numbers come first and odd later.
+
+        let arr7 = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+
+        arr7.sort((a, b) => (a % 2) - (b % 2))
+
+        console.log(arr7);
+
+        console.log("----------------");
+
+        // Create a copy excluding first and last element.
+
+        let arr9 = [10, 20, 30, 40, 50];
+
+        let copy = arr9.slice(1, arr9.length - 1);
+
+        console.log(copy);
+
+        console.log("----------------");
+
+
+        // Merge two arrays.( Use concat() )
+
+        let arr10 = [1, 2, 3];
+        let arr11 = [4, 5, 6];
+
+        let merged = arr10.concat(arr11);
+
+        console.log(merged);
+
+        console.log("----------------");
+
+
+        // Merge 3 arrays and remove duplicate values.(  Combine + loop/includes )
+
+        let arr13 = [1, 2, 3, 4];
+        let arr14 = [3, 4, 5, 6];
+        let arr15 = [5, 6, 7, 8];
+
+        let combine = arr13.concat(arr14, arr15);
+
+        let unique = [];
+
+        for (let value of combine) {
+            if (!unique.includes(value)) {
+                unique.push(value);
+            }
+        }
+
+        console.log(unique);
+
+        console.log("----------------");
+
+
+        //  Check if all elements of one array exist inside another. (Loop + includes)
+
+        let arr16 = [2, 4, 6, 8]
+
+        let arr17 = [1, 2, 3, 4, 5, 6];
+
+        let allExits = true;
+
+        for (let values of arr16) {
+            if (!arr17.includes(values)) {
+                allExits = false;
+                break;
+            }
+        }
+
+        console.log(allExits);
+
+        console.log("----------------");
+
+
+        //  Find all positions of repeated number `5`. ( Loop through entire array )
+
+        let arr18 = [1, 2, 3, 4, 5, 6, 7, 5, 8, 9, 5, 10, 5];
+
+        let positions = [];
+
+        for (let i = 0; i < arr18.length; i++) {
+            if (arr18[i] === 5) {
+                positions.push(i)
+            }
+        }
+        console.log(positions);
+
+        console.log("----------------");
+
+
+        //  Convert array into sentence format
+
+        let sentence = ["I", "am", "Dhruv", "Patel"]
+
+        let sentenceFormate = sentence.join(" ");
+
+        console.log(sentenceFormate);
+
+        console.log("----------------");
+
+
+
+        //  Print elements at only even indexes. ( Increase loop smartly )
+
+        let evenIndex = [10, 20, 30, 40, 50, 60, 70, 80];
+
+        for (let i = 0; i < evenIndex.length; i += 2) {
+            console.log(evenIndex[i]);
+        }
+
+        console.log("----------------");
+
+
+
+        // Count vowels from array of characters. ( Use conditions inside loop )
+
+        let vowels = ['a', 'b', 'e', 'k', 'i', 'o', 'x', 'u'];
+
+        let count = 0;
+
+        for (let i = 0; i < vowels.length; i++) {
+            if (
+                vowels[i] === 'a' ||
+                vowels[i] === 'e' ||
+                vowels[i] === 'i' ||
+                vowels[i] === 'o' ||
+                vowels[i] === 'u'
+            ) {
+                count++;
+            }
+        }
+        console.log(count);
+
+        console.log("----------------");
+
+
+        // Create true copy so original array does not change.
+
+        let crr = ["premsakhi", "brahmanand", ["jivabapu", "punja dodiya"]]
+
+        let drr = structuredClone(crr)
+
+        console.log(drr);
+
+        drr[2][0] = "gopalanand"
+
+        console.log(drr);
+
+
+        const h1 = document.querySelector('h1');
+
+        h1.style.backgroundColor = "red"
+
+    </script>
+</body>
+
+</html>

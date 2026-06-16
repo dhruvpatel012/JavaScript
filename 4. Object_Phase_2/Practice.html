@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Practice Object Project</title>
+</head>
+
+<body>
+
+    <script>
+
+        //  Project 1: To-Do List (in-memory)
+
+        let todos = [];
+
+        function addTodo(task) {
+            todos.push({ id: todos.length + 1, task, done: false });
+        }
+
+        function completeTodo(id) {
+            let todo = todos.find(task => task.id === id);
+            if (todo) todo.done = true;
+        }
+
+        function removeTodo(id) {
+            todos = todos.filter(task => task.id !== id);
+        }
+
+        function showTodos() {
+
+            todos.forEach(task => {
+                console.log(`${task.id}. [${task.done ? "Finish" : " "}] ${task.task}`);
+            });
+        }
+
+        addTodo("Learn JS");
+        addTodo("Read one book")
+        addTodo("Run 3km")
+        completeTodo(2);
+        showTodos();
+
+        console.log("----------------");
+
+
+        //  Project 2: Student Grade Tracker
+
+        let students = [
+            { name: "Aman", marks: [80, 90, 75] },
+            { name: "Priya", marks: [95, 85, 92] },
+            { name: "Raj", marks: [60, 55, 70] }
+        ];
+
+
+        function getAverage(marks) {
+            return marks.reduce((sum, m) => sum + m, 0) / marks.length;
+        }
+
+        function getGrade(avg) {
+            if (avg >= 90) return "A";
+            if (avg >= 75) return "B";
+            if (avg >= 60) return "C";
+            return "F";
+        }
+
+
+      students.forEach(s => {
+        let avg = getAverage(s.marks);
+
+        console.log(`Name:${s.name} Avg:${avg.toFixed(2)} Grade:${getGrade(avg)}`);
+        
+      })
+
+        console.log("----------------");
+
+
+        //  Project 3: Shopping Cart Logic
+
+        let cart = [];
+
+        function addItem(name , price , qty = 1){
+            let existing = cart.find(item => item.name === name);
+
+            if(existing) {
+                existing.qty += qty;
+            }
+
+            else{
+                cart.push({name , price , qty});
+            }
+        }
+
+        function removeItem(name){
+            cart = cart.filter(item => item.name !== name);
+        }
+
+        function getTotal(){
+            return cart.reduce((sum , item) => sum + item.price * item.qty , 0);
+        }
+
+        function showCart(){
+            cart.forEach(item =>{
+                console.log(`${item.name} x${item.qty} = ₹${item.price * item.qty}`);
+            });
+
+            console.log(getTotal());
+        }
+
+        addItem("Notebook" , 100 , 5);
+        addItem("Pen" , 20 , 9);
+        addItem("Mouse" , 499 , 3);
+        addItem("Notebook")
+        showCart()
+
+        console.log("----------------");
+
+        removeItem("Mouse");
+        showCart();
+
+        console.log("----------------");
+
+
+        // Project 4: Word Frequency Counter
+
+        function wordFrequency(text) {
+            let word = text.toLowerCase().split(/\s+/);
+
+            let freq = {};
+
+            word.forEach(word => {
+                freq[word] = (freq[word] || 0) + 1;
+            });
+
+            return freq
+        }
+
+        let text = "The Quick Brown Fox Jumps Over The Lazy Dog The Fox Is Quick";
+        console.log(wordFrequency(text));
+
+        console.log("----------------");
+
+
+
+
+    </script>
+</body>
+
+</html>

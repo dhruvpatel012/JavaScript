@@ -1,0 +1,350 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sheet-3</title>
+</head>
+
+<body>
+    <script>
+        //  Create a new array where: Every product has a new property `discountPrice : ` & Discount is 10%
+
+        let products = [
+            { name: "Laptop", price: 50000 },
+            { name: "Phone", price: 20000 },
+        ];
+
+        let discount = products.map((less) => {
+            return {
+                ...less,
+                discountPrice: less.price - (less.price * 10) / 100,
+            };
+        });
+
+        console.log(discount);
+
+        console.log("-------------");
+
+        //  Filter all even numbers.
+
+        let nums = [1, 2, 3, 4, 5, 6, 7, 8];
+
+        let even = nums.filter((even) => {
+            return even % 2 === 0;
+        });
+
+        console.log(even);
+
+        console.log("-------------");
+
+
+        // Count frequency of elements.
+
+        let fruits = ["apple", "banana", "apple", "orange", "banana", "apple"];
+
+        let freq = fruits.reduce((acc, crr) => {
+            acc[crr] = (acc[crr] || 0) + 1;
+
+            return acc;
+        }, {});
+
+        //         let freq = fruits.reduce((acc, curr) => {
+        //     if (acc[curr]) {
+        //         acc[curr]++;
+        //     } else {
+        //         acc[curr] = 1;
+        //     }
+
+        //     return acc;
+        // }, {});
+
+        console.log(freq);
+
+        console.log("-------------");
+
+        let numss = [10, 40, 90, 50];
+
+        let find = numss.findIndex((value) => {
+            return value === 90;
+        });
+
+        console.log(find);
+
+        console.log("-------------");
+
+
+        let check = {
+            name: "dhruv",
+            age: 20,
+        };
+
+        let found = false;
+
+        for (let key in check) {
+            if (key === "email") {
+                found = true;
+                break;
+            }
+        }
+
+        // if ("email" in check) {
+        //     console.log("YES");
+        // } else {
+        //     console.log("NO");
+        // }
+
+        console.log(found ? "YES" : "NO");
+
+        console.log("-------------");
+
+
+        // Find the student with highest marks.
+
+        const marks = {
+            Anubhav: 95,
+            Rahul: 82,
+            Aman: 90,
+        };
+
+        let highest = -Infinity;
+
+        let topper = "";
+
+        for (let student in marks) {
+            if (marks[student] > highest) {
+                highest = marks[student];
+                topper = student;
+            }
+        }
+
+        console.log(topper, ":", highest);
+
+        console.log("-------------");
+
+
+        // Sum of Object Values
+        const salaries = {
+            john: 1000,
+            alex: 2000,
+            bob: 1500
+        };
+
+        let totalSalary = Object.values(salaries).reduce((acc, curr) => {
+            return acc + curr;
+        }, 0);
+
+        console.log("Total Salary :", totalSalary);
+
+        console.log("-------------");
+
+
+        // Convert this array into an object.
+
+        const crr = ["name", "Anubhav", "age", 24];
+
+        let obj = {}
+
+        for (let i = 0; i < crr.length; i += 2) {
+            obj[crr[i]] = crr[i + 1];
+        }
+
+        console.log(obj);
+
+        console.log("-------------");
+
+
+        // convert array into object
+
+        const arr9 = [10, 20, 30, 40, 50]
+
+        let newArr = {};
+
+        for (let i = 0; i < arr9.length; i++) {
+            newArr[i] = arr9[i]
+        }
+
+        console.log(newArr);
+
+        console.log("-------------");
+
+
+        // convert array into object
+        const brand = ["dell", "laptop", "apple", "Iphone 17", "LG", "TV"]
+
+        let newBrand = {};
+
+        for (let i = 0; i < brand.length; i += 2) {
+            newBrand[brand[i]] = brand[i + 1];
+        }
+
+        console.log(newBrand);
+
+
+        console.log("-------------");
+
+
+        // Count frequency of each character.
+
+        let name = "banana";
+
+        let count = name.split("").reduce((acc, crr) => {
+            acc[crr] = (acc[crr] || 0) + 1;
+
+            return acc;
+        }, {})
+
+        console.log(count);
+
+        console.log("-------------");
+
+
+        // Group users by age.
+
+        const users = [
+            { name: "A", age: 20 },
+            { name: "B", age: 21 },
+            { name: "C", age: 20 }
+        ]
+
+        let grouped = users.reduce((acc, crr) => {
+
+            if (!acc[crr.age]) {
+                acc[crr.age] = [];
+            }
+
+            acc[crr.age].push(crr);
+
+            return acc;
+        }, {})
+
+        console.log(grouped);
+
+        console.log("-------------");
+
+
+        // Check whether this property exists: "user.address.city" ( use : split(".") )
+
+        let object = {
+            user: {
+                address: {
+                    city: "Ahmedabad"
+                }
+            }
+        }
+
+        function hasProperty(object, path) {
+            let keys = path.split(".");
+
+            let current = object;
+
+            for (let key of keys) {
+                if (!(key in current)) {
+                    return false;
+                }
+
+                current = current[key];
+            }
+
+            return true;
+        }
+
+        console.log(hasProperty(object, "user.address.city"));
+
+        console.log("-------------");
+
+
+        // Check if two objects have same keys and values.
+
+        // method - 1
+        let obj1 = { a: 1, b: 2 };
+        let obj2 = { a: 1, b: 2 };
+
+        console.log(JSON.stringify(obj1) === JSON.stringify(obj2));
+
+
+        // method - 2
+        function isEqual(obj1, obj2) {
+
+            let keys1 = Object.keys(obj1);
+            let keys2 = Object.keys(obj2);
+
+            if (keys1.length !== keys2.length) {
+                return false;
+            }
+
+            for (let key of keys1) {
+
+                if (!(key in obj2)) {
+                    return false;
+                }
+
+                if (obj1[key] !== obj2[key]) {
+                    return false;
+                }
+            }
+
+            return true;
+        }
+
+        console.log(isEqual({ a: 1, b: 2 }, { a: 1, b: 2 }));
+
+        // Interview Thinking Pattern 
+
+        // Whenever you hear:
+
+        // Compare two objects
+
+        //  Think:
+        //  1. Same number of keys ?
+        //  2. Does every key exist in both objects ?
+        //  3. Are values equal ?
+
+        //  If all 3 pass:
+        //      return true;
+        //  Otherwise:
+        //      return false;
+
+        // This is the standard interview solution for shallow object comparison.
+
+        console.log("-------------");
+
+        let userss = [
+            { id: 1, name: "A" },
+            { id: 2, name: "B" },
+            { id: 1, name: "A" }
+        ];
+
+        let uniqueUsers = userss.filter((user, index, arr) => {
+            return index === arr.findIndex(item => item.id === user.id);
+        });
+
+        console.log(uniqueUsers);
+
+        // Find the first occurrence of this id.
+        // If current index matches that first occurrence,
+        // keep it.
+        // Otherwise remove it.
+
+        console.log("-------------");
+
+
+        // Callback Function
+
+        function processUser(name, callBack) {
+            console.log("Processing User: " + name);
+            callBack(name)
+        }
+
+        function welcome(name) {
+            console.log("Welcome," + name);
+        }
+
+        processUser("Dhruv", welcome)
+
+
+    </script>
+</body>
+
+</html>

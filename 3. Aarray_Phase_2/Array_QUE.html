@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Array QUESTION</title>
+</head>
+
+<body>
+
+
+    <script>
+
+        // 1) Sort numbers ascending.
+
+        let number = [10, 55, 3, 5, 33, 9, 112, 224]
+
+        let name = ["dhurv", "patel", "ghanshyam", "pande"]
+
+        number.sort((a, b) => a - b)
+        name.sort()
+
+        console.log(number);
+        console.log(name);
+
+        console.log("------------");
+
+
+        // 2) Find maximum value using Math.max.
+
+        let arr = [10, 20, 30, 40,]
+
+        let math = Math.max(...arr)
+
+        console.log(math);
+
+        console.log("------------");
+
+
+        // 3) Use forEach to print all numbers doubled.
+
+        let nums = [10, 20, 30, 40, 50];
+
+        nums.forEach(function (elem, index) {
+
+            nums[index] = elem * 2
+
+        });
+
+        console.log(nums);
+
+        console.log("------------");
+
+
+        // 4) Use map to square all numbers.
+
+        let brr = [2, 3, 4, 5, 6];
+
+        let crr = brr.map(function (elem) {
+            return elem * elem
+        })
+
+        console.log(crr);
+
+        console.log("------------");
+
+
+        // 5) Use filter to get even numbers.
+
+        let arr1 = [12, 44, 13, 15, 63, 69, 78, 92];
+
+        let even = arr1.filter(n => n % 2 === 0)
+
+        console.log(even);
+
+        console.log("------------");
+
+
+        // 6) Use reduce to calculate sum.
+
+        let arr2 = [1, 2, 3, 4, 5]
+
+        let reduced = arr2.reduce(function (acc, value) {
+            return acc += value
+        }, 0)
+
+        console.log(reduced);
+
+        console.log("------------");
+
+
+        // 7) Use reduce to find maximum number.
+
+        let arr3 = [10, 45, 23, 99, 12, 67];
+
+        let max = arr3.reduce(function (acc, curr) {
+            return curr > acc ? curr : acc;
+        });
+
+        console.log(max);
+
+        console.log("------------");
+
+
+        // 8) Use find to get first even number.
+
+        let arr4 = [3, 7, 6, 8, 1, 9]
+
+        let maxi = arr4.find(n => n % 2 === 0)
+
+        console.log(maxi);
+
+        console.log("------------");
+
+
+        // 9) Use findIndex to locate number > 50.
+
+        let arr5 = [40, 45, 55, 60, 30, 70, 32, 80]
+
+        let locate = arr5.findIndex(n => n > 50)
+
+        console.log(locate);
+
+        console.log("------------");
+
+
+        // 10) Use some to check if any number is negative.
+
+        let arr6 = [20, 30, 50, -42, 32]
+
+        let negative = arr6.some(n => n < 0)
+
+        console.log(negative);
+
+        console.log("------------");
+
+
+        // 11) Use every to check if all numbers are positive.
+
+        let arr7 = [25, 637, 425, 432, -424];
+
+        let positive = arr7.every(num => num > 0)
+
+        console.log(positive);
+
+        console.log("------------");
+
+
+        // 12) Create array of names and convert all to uppercase.
+
+        let nameUp = ["dhruv", "patel", "ghanshyam", "pande"]
+
+        let upper = nameUp.map(function (elem) {
+            return elem.toUpperCase()
+        })
+
+        console.log(upper);
+
+        console.log("------------");
+
+
+        // 13) Filter all students with marks > 80.
+
+        let students = [
+            { name: "Dhruv", marks: 98 },
+            { name: "Khushi", marks: 99 },
+            { name: "Deep", marks: 70 },
+            { name: "Dirgh", marks: 69 }]
+
+        let upTo = students.filter(function (elem) {
+            return elem.marks > 80
+        })
+
+        console.log(upTo);
+
+        console.log("------------");
+
+
+        // 14) Calculate average using reduce.
+
+        let arr8 = [80, 95, 91, 99, 97];
+
+        let avg = arr8.reduce((acc, value) => acc + value, 0) / arr8.length;
+
+        console.log(avg);
+
+        console.log("------------");
+
+
+        // 15) Count occurrences of numbers in array.
+
+        let arr9 = [42, 42, 56, 64, 56, 64, 64]
+
+        let count = arr9.reduce((acc, crr) => {
+
+            acc[crr] = (acc[crr] || 0) + 1
+
+            return acc;
+        }, {})
+
+        console.log(count);
+
+
+
+
+
+
+
+
+
+    </script>
+</body>
+
+</html>

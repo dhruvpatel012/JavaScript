@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+
+        // 1) Create a function to reverse a string.
+
+        //  Method-1
+        function rev(str) {
+            return str.split("").reverse().join("");
+        }
+        console.log(rev("Dhruv"));
+
+
+        //Method-2
+        function res(name) {
+
+            let reversed = "";
+
+            for (let i = name.length - 1; i >= 0; i--) {
+
+                reversed += name[i];
+            }
+            return reversed;
+        }
+        console.log(res("Patel"));
+
+        console.log("------------------");
+
+
+        // 2) Create a function that accepts unlimited numbers and returns their sum using rest operator.
+
+        function sumOf(...number) {
+            total = 0;
+
+            // for(let i = 0; i<number.length; i++){
+            //      total += nums;
+            // }
+
+            for (let nums of number) {
+                total += nums;
+            }
+            return `Total is: ${total}`
+        }
+        console.log(sumOf(1, 2, 3, 4, 5));
+
+        console.log("------------------");
+
+
+        // 3) Write a function that counts vowels in a string.
+
+        let str = (name) => {
+
+            let vowels = 0;
+
+            for (let i = 0; i < name.length; i++) {
+
+                let char = name[i].toLowerCase();
+
+                if ("aeiou".includes(char)) {
+                    vowels++;
+                }
+            }
+
+            return vowels;
+        }
+
+        console.log(str("dhruv")); // 
+
+        console.log("------------------");
+
+
+        // 4) Create a function that checks if a string is palindrome.
+
+        let reversed = (str) => {
+
+            //  let copy = str.split("").reverse().join("")
+
+            //  if(copy === str){
+            //     return "Palindrome"
+            // }
+            // else{
+            //     return "Not Palindrome"
+            // }
+
+            let left = 0;
+            let right = str.length - 1;
+            let flag = 0;
+
+            while (left < right) {
+
+                if (str[left] !== str[right]) {
+                    flag = 1;
+                    break;
+                }
+
+                left++;
+                right--;
+            }
+
+            return flag === 0 ? "Palindrome" : "Not Palindrome";
+        }
+
+        console.log(reversed("level"));
+
+        console.log("------------------");
+
+
+        // 5) Write a callback function example using setTimeout.
+
+        function helloMsg() {
+            console.log("Hello User!");
+        }
+
+        setTimeout(helloMsg, 3000)
+
+
+        // 6) Create a higher-order function that executes another function twice.
+
+
+        function firstName(name, twice) {
+            console.log("Hello " + name);
+
+            twice(name);
+            twice(name);
+        }
+
+        function lastName(name) {
+            console.log("Welcome, " + name);
+        }
+
+        firstName("Dhruv", lastName)
+
+        // function executeTwice(fn) {
+        //     fn();
+        //     fn();
+        // }
+
+        // function greet() {
+        //     console.log("Hello");
+        // }
+
+        console.log("------------------");
+
+
+        // 7) Write a function that returns another function.
+
+        function one(name) {
+            return function second() {
+                console.log("Which Food you Eat " + name);
+            };
+        }
+
+        const result = one("Nobita");
+
+        result();
+
+        console.log("------------------");
+
+
+        // 8) Nested Function Returns.
+        function ekdo() {
+            console.log("First Function");
+
+            return function () {
+                console.log("Second Function");
+
+                return function () {
+                    console.log("Third Function");
+                };
+            };
+        }
+
+        ekdo()()();
+
+        console.log("------------------");
+
+
+
+        // 9) Create a pure function for subtraction.
+
+        function sub(a, b) {
+            return a - b;
+        }
+
+        console.log(sub(10, 6));
+
+        console.log("------------------");
+
+
+        // 10) Create an impure function using global variable modification.
+
+        let Total = 0
+
+        function impure(...num) {
+
+            for (let i of num) {
+                Total += i;
+            }
+
+            return Total;
+        }
+
+        console.log(impure(1, 2, 3, 4, 5));
+
+
+    </script>
+</body>
+
+</html>

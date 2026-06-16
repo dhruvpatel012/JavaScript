@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bulb</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html,
+        body {
+            width: 100%;
+            height: 100%;
+            background-color: black;
+        }
+
+        main {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 3rem;
+        }
+
+        #bulb {
+            height: 400px;
+            width: 400px;
+            border-radius: 50%;
+            border: 4px solid white;
+        }
+
+        button {
+            padding: 1rem 2rem;
+            font-size: 1.2rem;
+            border: none;
+            color: white;
+            border-radius: 50px;
+            background-color: royalblue;
+        }
+    </style>
+</head>
+
+<body>
+
+    <main>
+        <div id="bulb"> </div>
+        <button class="btn">On</button>
+    </main>
+
+
+    <script>
+
+        let bulb = document.querySelector('#bulb')
+        let btn = document.querySelector('button')
+
+        // let flage = true;
+
+        // btn.addEventListener('click', function () {
+        //    if(flage){
+        //     bulb.style.backgroundColor = "Yellow"
+        //     btn.textContent = "Off";
+        //     flage = false;
+        //    }
+
+        //    else{
+        //      bulb.style.backgroundColor = "transparent"
+        //     btn.textContent = "On";
+        //     flage = true;
+        //    }
+        // });
+
+        btn.addEventListener('click', () => {
+
+            let status = bulb.classList.toggle("LightUp");
+
+            console.log(status);
+
+            if (status) {
+                bulb.style.backgroundColor = "yellow"
+                btn.textContent = "Off"
+            }
+
+            else {
+                bulb.style.backgroundColor = "transparent"
+                btn.textContent = "On"
+            }
+
+        });
+
+
+
+        // testingggg
+
+        let main = document.querySelector('main')
+
+        console.log(main.childNodes);
+        console.log(main.children);
+
+        console.log("-----------------");
+
+
+        console.log(main.innerText);
+        console.log(main.textContent);
+
+        console.log("-----------------");
+
+        let btn1 = document.querySelector('button')
+
+        let isClass = btn1.classList.contains('btn')
+        console.log(isClass);
+
+        isClass = btn1.classList.contains('btn2')
+        console.log(isClass);
+
+        console.log("-----------------");
+
+        // btn1.classList.replace('btn' , 'botn')
+
+
+    </script>
+</body>
+
+</html>

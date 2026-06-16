@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <script>
+
+        let arr = [10, 20];
+
+        arr.length = 5;
+
+        console.log(arr); // [10, 20, empty x 3]
+
+
+        let brr = [10,20,60,70,80,90]
+
+            brr.splice(2,0,30,40,50) // it modify original array
+
+          let newArr = brr.slice(0,3) // it create new array , don't modify original array
+
+        console.log(brr);
+        console.log(newArr);
+        
+
+
+        let brr2 = [20,30,40,50]
+
+        brr2.splice(2)
+
+        console.log(brr2);
+        
+
+        
+    </script>
+</body>
+
+</html>

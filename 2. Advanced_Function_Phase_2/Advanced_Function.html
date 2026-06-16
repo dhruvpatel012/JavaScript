@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advanced Function - Phase_2</title>
+</head>
+
+<body>
+
+    <script>
+
+        // 1) Write a recursive function for factorial.
+
+        function fact(n) {
+
+            if (n <= 1) {
+                return 1;
+            }
+
+            return n * fact(n - 1);
+        }
+
+        console.log(fact(5));
+
+        console.log("--------------");
+
+
+        // 2) Write recursive Fibonacci function.
+
+        function fibo(num) {
+            if (num === 0) return 0;
+            if (num === 1) return 1;
+
+            return fibo(num - 1) + fibo(num - 2);
+        }
+
+        function fiboSeries(n) {
+            let result = [];
+
+            for (let i = 0; i <= n; i++) {
+                result.push(fibo(i));
+            }
+
+            return result;
+        }
+
+        console.log(fiboSeries(5));
+
+        console.log("--------------");
+
+
+        // 3) Create a function that finds power using recursion.
+
+        function power(base, exponent) {
+            if (exponent === 0) {
+                return 1;
+            }
+
+            return base * power(base, exponent - 1);
+        }
+
+        console.log(power(2, 3), power(5, 3));
+
+        console.log("--------------");
+
+
+        // 4) Create an IIFE that prints "Executed".
+
+        (function () {
+            console.log("Executed !!");
+        })();
+
+        console.log("--------------");
+
+
+        // 5) Write a function that memoizes factorial calculation.
+
+        function memoizedFactorial() {
+            let cache = {};
+
+            return function factorial(n) {
+
+                if (n in cache) {
+                    console.log("From Cache");
+                    return cache[n];
+                }
+
+                let result;
+
+                if (n === 0 || n === 1) {
+                    result = 1;
+                } else {
+                    result = n * factorial(n - 1);
+                }
+
+                cache[n] = result;
+                return result;
+            };
+        }
+
+        const factorial = memoizedFactorial();
+
+        console.log(factorial(5)); // 120
+        console.log(factorial(5)); // From Cache -> 120
+
+        console.log("--------------");
+
+
+        // 6) Write a function currying example for addition.
+
+        function add(a) {
+            return function b(b) {
+                return function c(c) {
+                    return a + b + c;
+                };
+            };
+        };
+        console.log(add(5)(4)(1));
+
+        console.log("--------------");
+
+
+    </script>
+</body>
+
+</html>

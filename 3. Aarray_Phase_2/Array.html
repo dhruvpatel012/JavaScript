@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <script>
+
+        // Shallow Copy
+        let arr = [1, 2, 3, 4, 5];
+
+        let arr1 = arr;
+
+        arr1.push(6);
+
+        console.log(arr1);
+
+        console.log(arr);
+
+        console.log("------------");
+
+
+        // Deep Copy - structuredClone()
+        let arr2 = [[1, 2], [3, 4]];
+
+        let arr3 = structuredClone(arr2);
+
+        arr3[0].push(99);
+
+        console.log(arr2);
+        console.log(arr3);
+
+        console.log("------------");
+
+
+        // print 1 to 10 using push()
+        let brr = [];
+
+        for (let a = 0; a < 10; a++) {
+            brr.push(a + 1)
+        }
+
+        console.log(brr);
+
+        console.log("------------");
+
+
+        //tricky push-pop method
+        let crr = [10, 20, 30, 40, 50]
+
+        let crr2 = crr.push(60)
+
+        console.log(crr2); // 6 - it gives me length.
+
+        console.log("------------");
+
+
+        //forEach - method
+
+        let nums = [1, 2, 3];
+        nums.forEach(function (n) {
+            console.log(n * 2);
+        });
+
+        console.log("------------");
+
+
+        let frr = [10, 20, 30, 40, 50, 60]
+
+        frr.forEach(function (elem, idx, arr) {
+            console.log(idx, elem, arr);
+        })
+
+        frr.forEach(function () {
+            console.log("six time");
+        })
+
+        console.log("------------");
+
+
+        // Modify Existing Array - forEach
+        let drr = ["dhurv", "patel", "valido", "manigar"];
+
+        drr.forEach((name, inx) => {
+            drr[inx] = name + " hero"
+        });
+
+        console.log(drr);
+
+        console.log("------------");
+
+        //map() - Method
+
+        let doubled = [2, 4, 6, 8, 10]
+
+        let ans = doubled.map(function (elem) {
+            return elem * 2
+        })
+
+        console.log(doubled);
+        console.log(ans);
+
+
+
+        let vrr = ["A", "B", "C"];
+
+        let result = vrr.map((value, index) => {
+            return `${index} : ${value}`;
+        });
+        console.log(result);
+
+        console.log("------------");
+
+
+        let mrr = [1, 2, 3, 4, 5];
+
+        let mapResult = mrr.map(num => num > 3);
+        let filterResult = mrr.filter(num => num > 3);
+
+        console.log(mapResult);
+        console.log(filterResult);
+
+        console.log("------------");
+
+
+        // Array Destructuring
+        let nrr = [10, 20, 30];
+
+        // Old way
+        let a = nrr[0];
+        let b = nrr[1];
+
+        // New way
+        let [x, y, z] = nrr;
+        console.log(x, y, z);   // 10 20 30
+        
+
+    </script>
+</body>
+
+</html>

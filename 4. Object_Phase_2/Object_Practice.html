@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Object Practice</title>
+</head>
+
+<body>
+
+    <script>
+
+        const data = {
+            first_name: "dhruv",
+            age: 20,
+            city: "Morbi"
+        }
+
+        delete data.age
+
+        console.log(data["first_name"]);
+        console.log(data);
+
+        console.log("------------");
+
+
+        // Methods — Functions Inside Objects
+
+        const user = {
+            name: "Dhruv",
+
+            add(a, b) { return a + b },
+            sub(a, b) { return a - b },
+
+            mul: (a, b) => { return a * b }
+        }
+
+        console.log(user);
+        console.log(user.add(6, 4));
+        console.log(user.sub(10, 6));
+        console.log(user.mul(5, 5));
+
+        console.log("------------");
+
+
+        // Using The this Keyword
+        let user1 = {
+            name: "Aman",
+            greet() {
+                console.log("Hello, I am " + this.name);
+            }
+        };
+
+        user1.greet();   // "Hello, I am Aman"
+
+        console.log("------------");
+
+
+        //  Useful Object Methods
+
+        let person = { name: "Aman", age: 25, city: "Bhopal" };
+
+        console.log(Object.keys(person));    // ["name", "age", "city"]
+        console.log(Object.values(person));  // ["Aman", 25, "Bhopal"]
+        console.log(Object.entries(person)); // [["name", "Aman"], ["age", 25], ["city", "Bhopal"]]
+
+        Object.entries(person).forEach(([key, value]) => {
+            console.log(`${key}: ${value}`);
+        });
+
+        console.log("------------");
+
+        var a = console.log("hello");
+
+        console.log(a); // undefined - because it does not give any value
+
+        console.log("------------");
+
+
+        console.log(console.log());
+
+
+        console.log("------------");
+
+
+        // Looping Through Objects
+
+        // 1) for...in loop
+
+        console.log("For...in");
+
+        let personInfo = { name: 'Dhruv', age: 20, city: 'Gandhinagar' }
+
+        for (let key in personInfo) {
+            console.log(key, ":", personInfo[key]);
+
+        }
+        console.log("------------");
+
+
+        // 2) Object.keys with forEach
+
+        console.log("Object.keys with forEach");
+
+        Object.keys(personInfo).forEach(key => {
+            console.log(key, ":", personInfo[key]);
+
+        })
+        console.log("------------");
+
+
+        // 3) Object.entries with destructuring (cleanest)
+
+        console.log("Object.entries with destructuring (cleanest)");
+
+        for (let [key, value] of Object.entries(person)) {
+            console.log(key, ":", personInfo[key]);
+        }
+        console.log("------------");
+
+
+        var user2 = {
+            name: "pande",
+            age: "20",
+            city: "Chhpaiya",
+
+            hobby: {
+                skill: "writting"
+            }
+        }
+        var { name, ...b } = user2
+        console.log(name, b);
+
+        console.log("------------");
+
+        // Freeze - method , can modify nested object
+        Object.freeze(user2)
+
+        user2.hobby.skill = "reading"
+
+        console.log(user2);
+
+        console.log("------------");
+
+
+        // Find user with highest age.
+
+        let userAge = [{ name: "dhruv", age: 20 }, { name: "deep", age: 30 }, { name: "dirgh", age: 25 }]
+
+
+        let highestAge = userAge.reduce((max, crr) => {
+
+            return crr.age > max.age ? crr : max;
+
+        }, userAge[0]);
+
+        console.log(highestAge);
+
+        console.log("------------");
+
+
+        console.log([1, 2] + [3, 4]);  // 1 , 23 ,4 (it cannot add arrays directly, so it tries to convert both arrays to primitive values (strings) -> "1,2" + "3,4")
+
+
+        console.log("------------");
+
+
+        function x(a, b) {
+            return a + b;
+        }
+        console.log(x(2)); // NaN
+
+    </script>
+</body>
+
+</html>
