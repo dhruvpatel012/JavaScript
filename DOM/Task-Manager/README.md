@@ -4,6 +4,9 @@ A Task Manager project built using HTML, CSS and Vanilla JavaScript.
 
 The main goal of this project is to practice DOM Manipulation concepts and understand how JavaScript interacts with HTML elements dynamically.
 
+# Live Preview
+🔗 https://dom-task-manager.vercel.app/
+
 ---
 
 # Features
