@@ -5,18 +5,24 @@ const category = document.getElementById("category");
 const addTaskBtn = document.getElementById("addTaskBtn");
 const taskContainer = document.getElementById("taskContainer");
 
-// attribute demo
-
 const demoInput = document.getElementById("demoInput");
 const checkAttributeBtn = document.getElementById("checkAttributeBtn");
 
-// unique task id
+const totalTasks = document.getElementById("totalTasks");
+const completedTasks = document.getElementById("completedTasks");
+const pendingTasks = document.getElementById("pendingTasks");
+
+const themeBtn = document.getElementById("themeBtn");
 
 let taskId = 1;
 
 // add task
 
 addTaskBtn.addEventListener("click", addTask);
+
+// theme toggle
+
+themeBtn.addEventListener("click", toggleTheme);
 
 // attribute demo
 
@@ -31,15 +37,17 @@ checkAttributeBtn.addEventListener("click", function () {
 // event delegation
 
 taskContainer.addEventListener("click", function (event) {
-  // delete task
+  // delete
 
   if (event.target.classList.contains("delete-btn")) {
     const taskCard = event.target.closest(".task-card");
 
     taskCard.remove();
+
+    updateCounters();
   }
 
-  // complete task
+  // complete
 
   if (event.target.classList.contains("complete-btn")) {
     const taskCard = event.target.closest(".task-card");
@@ -52,8 +60,6 @@ taskContainer.addEventListener("click", function (event) {
       taskCard.dataset.status = "pending";
     }
 
-    // after() demo
-
     const info = document.createElement("small");
 
     info.textContent = "Status Changed";
@@ -63,9 +69,11 @@ taskContainer.addEventListener("click", function (event) {
     setTimeout(() => {
       info.remove();
     }, 1500);
+
+    updateCounters();
   }
 
-  // edit task
+  // edit
 
   if (event.target.classList.contains("edit-btn")) {
     const taskCard = event.target.closest(".task-card");
@@ -78,8 +86,6 @@ taskContainer.addEventListener("click", function (event) {
 
     editInput.value = oldTitle;
 
-    // replace heading with input
-
     title.replaceWith(editInput);
 
     event.target.textContent = "Save";
@@ -89,7 +95,7 @@ taskContainer.addEventListener("click", function (event) {
     event.target.classList.add("save-btn");
   }
 
-  // save task
+  // save
   else if (event.target.classList.contains("save-btn")) {
     const taskCard = event.target.closest(".task-card");
 
@@ -109,11 +115,7 @@ taskContainer.addEventListener("click", function (event) {
 
     newHeading.appendChild(titleText);
 
-    // replace input with heading
-
     editInput.replaceWith(newHeading);
-
-    // before() demo
 
     const message = document.createElement("p");
 
@@ -148,8 +150,6 @@ function addTask() {
     return;
   }
 
-  // task card
-
   const taskCard = document.createElement("div");
 
   taskCard.classList.add("task-card");
@@ -160,29 +160,17 @@ function addTask() {
 
   taskCard.setAttribute("data-category", categoryValue);
 
-  // title
-
   const heading = document.createElement("h3");
 
-  const headingText = document.createTextNode(titleValue);
-
-  heading.appendChild(headingText);
-
-  // category
+  heading.appendChild(document.createTextNode(titleValue));
 
   const categoryText = document.createElement("p");
 
-  const categoryNode = document.createTextNode(categoryValue);
-
-  categoryText.appendChild(categoryNode);
-
-  // actions
+  categoryText.appendChild(document.createTextNode(categoryValue));
 
   const actions = document.createElement("div");
 
   actions.classList.add("task-actions");
-
-  // edit button
 
   const editBtn = document.createElement("button");
 
@@ -190,15 +178,11 @@ function addTask() {
 
   editBtn.appendChild(document.createTextNode("Edit"));
 
-  // complete button
-
   const completeBtn = document.createElement("button");
 
   completeBtn.classList.add("complete-btn");
 
   completeBtn.appendChild(document.createTextNode("Complete"));
-
-  // delete button
 
   const deleteBtn = document.createElement("button");
 
@@ -212,13 +196,41 @@ function addTask() {
 
   taskContainer.appendChild(taskCard);
 
-  console.log(taskCard.dataset.id);
-
-  console.log(taskCard.dataset.status);
-
-  console.log(taskCard.dataset.category);
-
   taskTitle.value = "";
 
   taskId++;
+
+  updateCounters();
+}
+
+// counter function
+
+function updateCounters() {
+  const allTasks = document.querySelectorAll(".task-card");
+
+  const completed = document.querySelectorAll('[data-status="completed"]');
+
+  totalTasks.textContent = allTasks.length;
+
+  completedTasks.textContent = completed.length;
+
+  pendingTasks.textContent = allTasks.length - completed.length;
+}
+
+// theme toggle
+
+function toggleTheme() {
+  document.body.classList.toggle("dark");
+
+  if (document.body.classList.contains("dark")) {
+    document.body.dataset.theme = "dark";
+
+    themeBtn.textContent = "Light Mode";
+  } else {
+    document.body.dataset.theme = "light";
+
+    themeBtn.textContent = "Dark Mode";
+  }
+
+  console.log(document.body.dataset.theme);
 }
