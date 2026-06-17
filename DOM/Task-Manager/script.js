@@ -10,6 +10,8 @@ const taskContainer = document.getElementById("taskContainer");
 const demoInput = document.getElementById("demoInput");
 const checkAttributeBtn = document.getElementById("checkAttributeBtn");
 
+// unique task id
+
 let taskId = 1;
 
 // add task
@@ -50,12 +52,94 @@ taskContainer.addEventListener("click", function (event) {
       taskCard.dataset.status = "pending";
     }
 
-    console.log(taskCard.dataset.status);
+    // after() demo
+
+    const info = document.createElement("small");
+
+    info.textContent = "Status Changed";
+
+    taskCard.after(info);
+
+    setTimeout(() => {
+      info.remove();
+    }, 1500);
+  }
+
+  // edit task
+
+  if (event.target.classList.contains("edit-btn")) {
+    const taskCard = event.target.closest(".task-card");
+
+    const title = taskCard.querySelector("h3");
+
+    const oldTitle = title.textContent;
+
+    const editInput = document.createElement("input");
+
+    editInput.value = oldTitle;
+
+    // replace heading with input
+
+    title.replaceWith(editInput);
+
+    event.target.textContent = "Save";
+
+    event.target.classList.remove("edit-btn");
+
+    event.target.classList.add("save-btn");
+  }
+
+  // save task
+  else if (event.target.classList.contains("save-btn")) {
+    const taskCard = event.target.closest(".task-card");
+
+    const editInput = taskCard.querySelector("input");
+
+    const updatedTitle = editInput.value.trim();
+
+    if (updatedTitle === "") {
+      alert("Task title cannot be empty");
+
+      return;
+    }
+
+    const newHeading = document.createElement("h3");
+
+    const titleText = document.createTextNode(updatedTitle);
+
+    newHeading.appendChild(titleText);
+
+    // replace input with heading
+
+    editInput.replaceWith(newHeading);
+
+    // before() demo
+
+    const message = document.createElement("p");
+
+    message.textContent = "Task Updated Successfully";
+
+    message.classList.add("update-message");
+
+    newHeading.before(message);
+
+    setTimeout(() => {
+      message.remove();
+    }, 1500);
+
+    event.target.textContent = "Edit";
+
+    event.target.classList.remove("save-btn");
+
+    event.target.classList.add("edit-btn");
   }
 });
 
+// add task function
+
 function addTask() {
   const titleValue = taskTitle.value;
+
   const categoryValue = category.value;
 
   if (titleValue.trim() === "") {
@@ -127,6 +211,12 @@ function addTask() {
   taskCard.append(heading, categoryText, actions);
 
   taskContainer.appendChild(taskCard);
+
+  console.log(taskCard.dataset.id);
+
+  console.log(taskCard.dataset.status);
+
+  console.log(taskCard.dataset.category);
 
   taskTitle.value = "";
 
