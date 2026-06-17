@@ -1,14 +1,215 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM Task Manager</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
     <link rel="stylesheet" href="style.css">
-    <title>Task-Manager</title>
+    <link rel="stylesheet" href="mediaQuery.css">
 </head>
+
 <body>
-    
+
+    <main class="container">
+
+        <!-- Header -->
+        <header>
+            <h1>DOM Task Manager</h1>
+
+            <button id="themeBtn">
+                Toggle Theme
+            </button>
+        </header>
+
+
+        <!-- Task Form -->
+        <section class="task-form">
+
+            <h2>Add Task</h2>
+
+            <input type="text" id="taskTitle" placeholder="Enter Task Title">
+
+            <select id="category">
+
+                <option value="Study">
+                    Study
+                </option>
+
+                <option value="Work">
+                    Work
+                </option>
+
+                <option value="Personal">
+                    Personal
+                </option>
+
+            </select>
+
+            <button id="addTaskBtn">
+                Add Task
+            </button>
+
+        </section>
+
+
+        <!-- Search + Filter -->
+
+        <section class="search-filter">
+
+            <input type="text" id="searchInput" placeholder="Search Task">
+
+            <select id="filterCategory">
+
+                <option value="All">
+                    All Categories
+                </option>
+
+                <option value="Study">
+                    Study
+                </option>
+
+                <option value="Work">
+                    Work
+                </option>
+
+                <option value="Personal">
+                    Personal
+                </option>
+
+            </select>
+
+        </section>
+
+
+        <!-- Counters -->
+
+        <section class="counters">
+
+            <div>
+                Total:
+                <span id="totalTasks">0</span>
+            </div>
+
+            <div>
+                Completed:
+                <span id="completedTasks">0</span>
+            </div>
+
+            <div>
+                Pending:
+                <span id="pendingTasks">0</span>
+            </div>
+
+        </section>
+
+
+        <!-- Task Container -->
+
+        <section>
+
+            <h2>Tasks</h2>
+
+            <div id="taskContainer">
+
+                <!-- Dynamic Tasks Here -->
+
+            </div>
+
+        </section>
+
+
+        <!-- Attributes vs Properties -->
+
+        <section class="attribute-demo">
+
+            <h2>Attributes vs Properties</h2>
+
+            <input type="text" id="demoInput" value="Dhruv">
+
+            <button id="checkAttributeBtn">
+                Check Difference
+            </button>
+
+        </section>
+
+
+        <!-- Event Propagation -->
+
+        <section class="propagation">
+
+            <h2>Event Propagation Demo</h2>
+
+            <div id="grandparent">
+
+                Grandparent
+
+                <div id="parent">
+
+                    Parent
+
+                    <button id="childBtn">
+                        Child Button
+                    </button>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- Browser Rendering Pipeline -->
+
+        <section class="rendering-pipeline">
+
+            <h2>Browser Rendering Pipeline</h2>
+
+            <div class="pipeline-box">
+                HTML
+            </div>
+
+            <div class="pipeline-box">
+                Parsing
+            </div>
+
+            <div class="pipeline-box">
+                Tokenization
+            </div>
+
+            <div class="pipeline-box">
+                DOM Tree
+            </div>
+
+            <div class="pipeline-box">
+                CSS
+            </div>
+
+            <div class="pipeline-box">
+                CSSOM Tree
+            </div>
+
+            <div class="pipeline-box">
+                Render Tree
+            </div>
+
+        </section>
+
+    </main>
+
+
+
 
     <script src="script.js"></script>
+
 </body>
+
 </html>

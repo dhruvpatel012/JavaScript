@@ -1,0 +1,62 @@
+/* tablet */
+
+@media (max-width: 768px) {
+
+    header {
+        flex-direction: column;
+        gap: 15px;
+        text-align: center;
+    }
+
+    .task-form {
+        flex-direction: column;
+    }
+
+    .search-filter {
+        flex-direction: column;
+    }
+
+    .attribute-demo {
+        flex-direction: column;
+    }
+
+    #grandparent,
+    #parent {
+        padding: 25px;
+    }
+}
+
+/* mobile */
+
+@media (max-width: 480px) {
+
+    .container {
+        padding: 12px;
+    }
+
+    section {
+        padding: 15px;
+    }
+
+    header h1 {
+        font-size: 1.6rem;
+    }
+
+    .counters {
+        grid-template-columns: 1fr;
+    }
+
+    #taskContainer {
+        grid-template-columns: 1fr;
+    }
+
+    .task-actions {
+        flex-direction: column;
+    }
+
+    input,
+    select,
+    button {
+        width: 100%;
+    }
+}
