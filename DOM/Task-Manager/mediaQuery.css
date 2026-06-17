@@ -1,32 +1,53 @@
-/* tablet */
-
 @media (max-width: 768px) {
 
     header {
         flex-direction: column;
-        gap: 15px;
+        gap: 14px;
         text-align: center;
+        padding: 20px;
     }
 
-    .task-form {
-        flex-direction: column;
+    header h1 {
+        justify-content: center;
     }
 
-    .search-filter {
-        flex-direction: column;
+    #themeBtn {
+        width: 100%;
     }
 
+    /* stack form rows */
+    .task-form,
+    .search-filter,
     .attribute-demo {
         flex-direction: column;
     }
 
+    /* wrappers must stretch full width when stacked */
+    .select-wrapper,
+    .input-icon-wrapper {
+        width: 100%;
+        flex: unset;
+        min-width: unset;
+    }
+
+    /* direct inputs in task-form (title field) */
+    .task-form>input {
+        width: 100%;
+        flex: unset;
+        min-width: unset;
+    }
+
+    #addTaskBtn,
+    #checkAttributeBtn {
+        width: 100%;
+    }
+
     #grandparent,
     #parent {
-        padding: 25px;
+        padding: 24px;
     }
 }
 
-/* mobile */
 
 @media (max-width: 480px) {
 
@@ -35,28 +56,55 @@
     }
 
     section {
-        padding: 15px;
+        padding: 16px;
+    }
+
+    header {
+        border-radius: 16px;
+        padding: 16px;
     }
 
     header h1 {
-        font-size: 1.6rem;
+        font-size: 1.35rem;
+        gap: 8px;
     }
 
+    /* single-column counters */
     .counters {
         grid-template-columns: 1fr;
     }
 
+    /* single-column tasks */
     #taskContainer {
         grid-template-columns: 1fr;
     }
 
+    /* stack task action buttons */
     .task-actions {
         flex-direction: column;
     }
 
-    input,
-    select,
-    button {
+    .task-actions button {
         width: 100%;
+    }
+
+    /* pipeline boxes slightly smaller text */
+    .pipeline-box {
+        font-size: 13px;
+        padding: 12px 14px;
+    }
+
+    /* propagation demo tighter */
+    #grandparent {
+        padding: 18px;
+    }
+
+    #parent {
+        padding: 18px;
+    }
+
+    /* counter numbers a touch smaller */
+    .counters span {
+        font-size: 2rem;
     }
 }

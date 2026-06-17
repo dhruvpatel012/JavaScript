@@ -7,11 +7,11 @@
     <title>DOM Task Manager</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
-
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
-        rel="stylesheet">
+    <!-- Remix Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css" rel="stylesheet">
 
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="mediaQuery.css">
@@ -23,190 +23,179 @@
 
         <!-- Header -->
         <header>
-            <h1>DOM Task Manager</h1>
-
+            <h1>
+                <i class="ri-checkbox-multiple-line"></i>
+                DOM Task Manager
+            </h1>
             <button id="themeBtn">
-                Toggle Theme
+                <i class="ri-moon-line" id="themeIcon"></i>
+                <span id="themeLabel">Dark Mode</span>
             </button>
         </header>
 
 
         <!-- Task Form -->
         <section class="task-form">
+            <h2>
+                <i class="ri-add-circle-line"></i>
+                Add Task
+            </h2>
 
-            <h2>Add Task</h2>
+            <input type="text" id="taskTitle" placeholder="Enter task title…">
 
-            <input type="text" id="taskTitle" placeholder="Enter Task Title">
-
-            <select id="category">
-
-                <option value="Study">
-                    Study
-                </option>
-
-                <option value="Work">
-                    Work
-                </option>
-
-                <option value="Personal">
-                    Personal
-                </option>
-
-            </select>
+            <div class="select-wrapper">
+                <i class="ri-price-tag-3-line select-icon"></i>
+                <select id="category">
+                    <option value="Study">Study</option>
+                    <option value="Work">Work</option>
+                    <option value="Personal">Personal</option>
+                </select>
+                <i class="ri-arrow-down-s-line select-arrow"></i>
+            </div>
 
             <button id="addTaskBtn">
+                <i class="ri-add-line"></i>
                 Add Task
             </button>
-
         </section>
 
 
         <!-- Search + Filter -->
-
         <section class="search-filter">
+            <h2>
+                <i class="ri-filter-3-line"></i>
+                Search &amp; Filter
+            </h2>
 
-            <input type="text" id="searchInput" placeholder="Search Task">
+            <div class="input-icon-wrapper">
+                <i class="ri-search-line input-icon"></i>
+                <input type="text" id="searchInput" placeholder="Search tasks…" class="has-icon">
+            </div>
 
-            <select id="filterCategory">
-
-                <option value="All">
-                    All Categories
-                </option>
-
-                <option value="Study">
-                    Study
-                </option>
-
-                <option value="Work">
-                    Work
-                </option>
-
-                <option value="Personal">
-                    Personal
-                </option>
-
-            </select>
-
+            <div class="select-wrapper">
+                <i class="ri-layout-grid-line select-icon"></i>
+                <select id="filterCategory">
+                    <option value="All">All Categories</option>
+                    <option value="Study">Study</option>
+                    <option value="Work">Work</option>
+                    <option value="Personal">Personal</option>
+                </select>
+                <i class="ri-arrow-down-s-line select-arrow"></i>
+            </div>
         </section>
 
 
         <!-- Counters -->
-
         <section class="counters">
-
             <div>
-                Total:
+                <i class="ri-stack-line counter-icon"></i>
+                <p>Total</p>
                 <span id="totalTasks">0</span>
             </div>
-
             <div>
-                Completed:
+                <i class="ri-checkbox-circle-line counter-icon"></i>
+                <p>Completed</p>
                 <span id="completedTasks">0</span>
             </div>
-
             <div>
-                Pending:
+                <i class="ri-time-line counter-icon"></i>
+                <p>Pending</p>
                 <span id="pendingTasks">0</span>
             </div>
-
         </section>
 
 
         <!-- Task Container -->
-
         <section>
-
-            <h2>Tasks</h2>
-
+            <h2>
+                <i class="ri-task-line"></i>
+                Tasks
+            </h2>
             <div id="taskContainer">
-
                 <!-- Dynamic Tasks Here -->
-
             </div>
-
         </section>
 
 
         <!-- Attributes vs Properties -->
-
         <section class="attribute-demo">
+            <h2>
+                <i class="ri-code-s-slash-line"></i>
+                Attributes vs Properties
+            </h2>
 
-            <h2>Attributes vs Properties</h2>
-
-            <input type="text" id="demoInput" value="Dhruv">
+            <div class="input-icon-wrapper">
+                <i class="ri-user-line input-icon"></i>
+                <input type="text" id="demoInput" value="Dhruv" class="has-icon">
+            </div>
 
             <button id="checkAttributeBtn">
+                <i class="ri-eye-line"></i>
                 Check Difference
             </button>
-
         </section>
 
 
         <!-- Event Propagation -->
-
         <section class="propagation">
-
-            <h2>Event Propagation Demo</h2>
+            <h2>
+                <i class="ri-broadcast-line"></i>
+                Event Propagation Demo
+            </h2>
 
             <div id="grandparent">
-
-                Grandparent
+                <span><i class="ri-parent-line"></i> Grandparent</span>
 
                 <div id="parent">
-
-                    Parent
+                    <span><i class="ri-user-line"></i> Parent</span>
 
                     <button id="childBtn">
+                        <i class="ri-cursor-line"></i>
                         Child Button
                     </button>
-
                 </div>
-
             </div>
-
         </section>
 
 
         <!-- Browser Rendering Pipeline -->
-
         <section class="rendering-pipeline">
-
-            <h2>Browser Rendering Pipeline</h2>
+            <h2>
+                <i class="ri-cpu-line"></i>
+                Browser Rendering Pipeline
+            </h2>
 
             <div class="pipeline-box">
+                <i class="ri-html5-line"></i>
                 HTML
             </div>
-
             <div class="pipeline-box">
+                <i class="ri-scissors-cut-line"></i>
                 Parsing
             </div>
-
             <div class="pipeline-box">
+                <i class="ri-coins-line"></i>
                 Tokenization
             </div>
-
             <div class="pipeline-box">
+                <i class="ri-node-tree"></i>
                 DOM Tree
             </div>
-
             <div class="pipeline-box">
+                <i class="ri-palette-line"></i>
                 CSS
             </div>
-
             <div class="pipeline-box">
+                <i class="ri-braces-line"></i>
                 CSSOM Tree
             </div>
-
             <div class="pipeline-box">
+                <i class="ri-layout-2-line"></i>
                 Render Tree
             </div>
-
         </section>
 
     </main>
-
-
-
 
     <script src="script.js"></script>
 
