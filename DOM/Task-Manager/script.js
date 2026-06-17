@@ -14,15 +14,35 @@ const pendingTasks = document.getElementById("pendingTasks");
 
 const themeBtn = document.getElementById("themeBtn");
 
+const searchInput = document.getElementById("searchInput");
+const filterCategory = document.getElementById("filterCategory");
+
+const grandparent = document.getElementById("grandparent");
+const parent = document.getElementById("parent");
+const childBtn = document.getElementById("childBtn");
+
 let taskId = 1;
+
+// load saved data
+
+loadTasks();
+loadTheme();
 
 // add task
 
 addTaskBtn.addEventListener("click", addTask);
 
-// theme toggle
+// theme
 
 themeBtn.addEventListener("click", toggleTheme);
+
+// search
+
+searchInput.addEventListener("input", filterTasks);
+
+// filter
+
+filterCategory.addEventListener("change", filterTasks);
 
 // attribute demo
 
@@ -45,6 +65,8 @@ taskContainer.addEventListener("click", function (event) {
     taskCard.remove();
 
     updateCounters();
+
+    saveTasks();
   }
 
   // complete
@@ -71,6 +93,8 @@ taskContainer.addEventListener("click", function (event) {
     }, 1500);
 
     updateCounters();
+
+    saveTasks();
   }
 
   // edit
@@ -111,9 +135,7 @@ taskContainer.addEventListener("click", function (event) {
 
     const newHeading = document.createElement("h3");
 
-    const titleText = document.createTextNode(updatedTitle);
-
-    newHeading.appendChild(titleText);
+    newHeading.appendChild(document.createTextNode(updatedTitle));
 
     editInput.replaceWith(newHeading);
 
@@ -134,10 +156,14 @@ taskContainer.addEventListener("click", function (event) {
     event.target.classList.remove("save-btn");
 
     event.target.classList.add("edit-btn");
+
+    filterTasks();
+
+    saveTasks();
   }
 });
 
-// add task function
+// add task
 
 function addTask() {
   const titleValue = taskTitle.value;
@@ -150,23 +176,48 @@ function addTask() {
     return;
   }
 
+  createTaskCard({
+    id: taskId,
+    title: titleValue,
+    category: categoryValue,
+    status: "pending",
+  });
+
+  taskTitle.value = "";
+
+  taskId++;
+
+  updateCounters();
+
+  filterTasks();
+
+  saveTasks();
+}
+
+// create card
+
+function createTaskCard(task) {
   const taskCard = document.createElement("div");
 
   taskCard.classList.add("task-card");
 
-  taskCard.setAttribute("data-id", taskId);
+  taskCard.dataset.id = task.id;
 
-  taskCard.setAttribute("data-status", "pending");
+  taskCard.dataset.status = task.status;
 
-  taskCard.setAttribute("data-category", categoryValue);
+  taskCard.dataset.category = task.category;
+
+  if (task.status === "completed") {
+    taskCard.classList.add("completed");
+  }
 
   const heading = document.createElement("h3");
 
-  heading.appendChild(document.createTextNode(titleValue));
+  heading.appendChild(document.createTextNode(task.title));
 
   const categoryText = document.createElement("p");
 
-  categoryText.appendChild(document.createTextNode(categoryValue));
+  categoryText.appendChild(document.createTextNode(task.category));
 
   const actions = document.createElement("div");
 
@@ -176,34 +227,146 @@ function addTask() {
 
   editBtn.classList.add("edit-btn");
 
-  editBtn.appendChild(document.createTextNode("Edit"));
+  editBtn.textContent = "Edit";
 
   const completeBtn = document.createElement("button");
 
   completeBtn.classList.add("complete-btn");
 
-  completeBtn.appendChild(document.createTextNode("Complete"));
+  completeBtn.textContent = "Complete";
 
   const deleteBtn = document.createElement("button");
 
   deleteBtn.classList.add("delete-btn");
 
-  deleteBtn.appendChild(document.createTextNode("Delete"));
+  deleteBtn.textContent = "Delete";
 
   actions.append(editBtn, completeBtn, deleteBtn);
 
   taskCard.append(heading, categoryText, actions);
 
   taskContainer.appendChild(taskCard);
+}
 
-  taskTitle.value = "";
+// save tasks
 
-  taskId++;
+function saveTasks() {
+  const taskCards = document.querySelectorAll(".task-card");
+
+  const tasks = [];
+
+  taskCards.forEach(function (task) {
+    tasks.push({
+      id: task.dataset.id,
+
+      title: task.querySelector("h3")?.textContent || "",
+
+      category: task.dataset.category,
+
+      status: task.dataset.status,
+    });
+  });
+
+  localStorage.setItem("tasks", JSON.stringify(tasks));
+}
+
+// load tasks
+
+function loadTasks() {
+  const savedTasks = JSON.parse(localStorage.getItem("tasks")) || [];
+
+  const fragment = document.createDocumentFragment();
+
+  savedTasks.forEach(function (task) {
+    const taskCard = document.createElement("div");
+
+    taskCard.classList.add("task-card");
+
+    taskCard.dataset.id = task.id;
+
+    taskCard.dataset.status = task.status;
+
+    taskCard.dataset.category = task.category;
+
+    if (task.status === "completed") {
+      taskCard.classList.add("completed");
+    }
+
+    const heading = document.createElement("h3");
+
+    heading.textContent = task.title;
+
+    const categoryText = document.createElement("p");
+
+    categoryText.textContent = task.category;
+
+    const actions = document.createElement("div");
+
+    actions.classList.add("task-actions");
+
+    const editBtn = document.createElement("button");
+
+    editBtn.classList.add("edit-btn");
+
+    editBtn.textContent = "Edit";
+
+    const completeBtn = document.createElement("button");
+
+    completeBtn.classList.add("complete-btn");
+
+    completeBtn.textContent = "Complete";
+
+    const deleteBtn = document.createElement("button");
+
+    deleteBtn.classList.add("delete-btn");
+
+    deleteBtn.textContent = "Delete";
+
+    actions.append(editBtn, completeBtn, deleteBtn);
+
+    taskCard.append(heading, categoryText, actions);
+
+    fragment.append(taskCard);
+
+    taskId = Math.max(taskId, Number(task.id) + 1);
+  });
+
+  taskContainer.append(fragment);
 
   updateCounters();
 }
 
-// counter function
+// save theme
+
+function toggleTheme() {
+  document.body.classList.toggle("dark");
+
+  const currentTheme = document.body.classList.contains("dark")
+    ? "dark"
+    : "light";
+
+  document.body.dataset.theme = currentTheme;
+
+  themeBtn.textContent = currentTheme === "dark" ? "Light Mode" : "Dark Mode";
+
+  localStorage.setItem("theme", currentTheme);
+}
+
+// load theme
+
+function loadTheme() {
+  const savedTheme = localStorage.getItem("theme");
+
+  if (savedTheme === "dark") {
+    document.body.classList.add("dark");
+
+    document.body.dataset.theme = "dark";
+
+    themeBtn.textContent = "Light Mode";
+  }
+}
+
+// counters
 
 function updateCounters() {
   const allTasks = document.querySelectorAll(".task-card");
@@ -217,20 +380,69 @@ function updateCounters() {
   pendingTasks.textContent = allTasks.length - completed.length;
 }
 
-// theme toggle
+// search + filter
 
-function toggleTheme() {
-  document.body.classList.toggle("dark");
+function filterTasks() {
+  const searchValue = searchInput.value.toLowerCase();
 
-  if (document.body.classList.contains("dark")) {
-    document.body.dataset.theme = "dark";
+  const selectedCategory = filterCategory.value;
 
-    themeBtn.textContent = "Light Mode";
-  } else {
-    document.body.dataset.theme = "light";
+  const tasks = document.querySelectorAll(".task-card");
 
-    themeBtn.textContent = "Dark Mode";
-  }
+  tasks.forEach(function (task) {
+    const title = task.querySelector("h3")?.textContent.toLowerCase() || "";
 
-  console.log(document.body.dataset.theme);
+    const category = task.dataset.category;
+
+    const matchTitle = title.includes(searchValue);
+
+    const matchCategory =
+      selectedCategory === "All" || category === selectedCategory;
+
+    if (matchTitle && matchCategory) {
+      task.style.display = "block";
+    } else {
+      task.style.display = "none";
+    }
+  });
 }
+
+// event bubbling demo
+
+grandparent.addEventListener("click", function () {
+  console.log("Bubbling -> Grandparent");
+});
+
+parent.addEventListener("click", function () {
+  console.log("Bubbling -> Parent");
+});
+
+childBtn.addEventListener("click", function () {
+  console.log("Bubbling -> Child");
+});
+
+// event capturing demo
+
+grandparent.addEventListener(
+  "click",
+  function () {
+    console.log("Capturing -> Grandparent");
+  },
+  true,
+);
+
+parent.addEventListener(
+  "click",
+  function () {
+    console.log("Capturing -> Parent");
+  },
+  true,
+);
+
+childBtn.addEventListener(
+  "click",
+  function () {
+    console.log("Capturing -> Child");
+  },
+  true,
+);
