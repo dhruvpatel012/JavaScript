@@ -1,25 +1,25 @@
 // getting elements
 
-const taskTitle = document.getElementById("taskTitle");
-const category = document.getElementById("category");
-const addTaskBtn = document.getElementById("addTaskBtn");
-const taskContainer = document.getElementById("taskContainer");
+const taskTitle = document.querySelector("#taskTitle");
+const category = document.querySelector("#category");
+const addTaskBtn = document.querySelector("#addTaskBtn");
+const taskContainer = document.querySelector("#taskContainer");
 
-const demoInput = document.getElementById("demoInput");
-const checkAttributeBtn = document.getElementById("checkAttributeBtn");
+const demoInput = document.querySelector("#demoInput");
+const checkAttributeBtn = document.querySelector("#checkAttributeBtn");
 
-const totalTasks = document.getElementById("totalTasks");
-const completedTasks = document.getElementById("completedTasks");
-const pendingTasks = document.getElementById("pendingTasks");
+const totalTasks = document.querySelector("#totalTasks");
+const completedTasks = document.querySelector("#completedTasks");
+const pendingTasks = document.querySelector("#pendingTasks");
 
-const themeBtn = document.getElementById("themeBtn");
+const themeBtn = document.querySelector("#themeBtn");
 
-const searchInput = document.getElementById("searchInput");
-const filterCategory = document.getElementById("filterCategory");
+const searchInput = document.querySelector("#searchInput");
+const filterCategory = document.querySelector("#filterCategory");
 
-const grandparent = document.getElementById("grandparent");
-const parent = document.getElementById("parent");
-const childBtn = document.getElementById("childBtn");
+const grandparent = document.querySelector("#grandparent");
+const parent = document.querySelector("#parent");
+const childBtn = document.querySelector("#childBtn");
 
 let taskId = 1;
 
