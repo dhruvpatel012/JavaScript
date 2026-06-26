@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mini Student Manager</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            padding: 20px;
+        }
+
+        input,
+        button {
+            padding: 8px;
+            margin: 5px;
+        }
+
+        #students{
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .student-list {
+            margin-top: 20px;
+        }
+
+        .student-card {
+            border: 1px solid #ccc;
+            padding: 15px;
+            margin: 10px 0;
+            width: 250px;
+            border-radius: 5px;
+        }
+
+        .delete-btn {
+            background-color: #ff4d4d;
+            color: white;
+            border: none;
+            cursor: pointer;
+            padding: 5px 10px;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h2>Student Management Dashboard</h2>
+
+    <input id="nameInp" placeholder="Name">
+    <input id="courseInp" placeholder="Course">
+    <button id="addBtn">Add Student</button>
+
+    <h3 id="totalCount">Total Students: 0</h3>
+
+    <div id="students"></div>
+
+    <script>
+        // 1. Data Store (Array of Objects)
+        let studentsArray = [];
+
+        // 2. DOM Selection
+        const nameInp = document.getElementById('nameInp');
+        const courseInp = document.getElementById('courseInp');
+        const addBtn = document.getElementById('addBtn');
+        const studentsContainer = document.getElementById('students');
+        const totalCount = document.getElementById('totalCount');
+
+        // 3. Event Listener to Add Student
+        addBtn.addEventListener('click', () => {
+            const nameValue = nameInp.value.trim();
+            const courseValue = courseInp.value.trim();
+
+            // Prevent adding empty fields
+            if (nameValue === "" || courseValue === "") {
+                alert("Please fill out both fields!");
+                return;
+            }
+
+            // Create student object
+            const newStudent = {
+                id: Date.now(), // Unique ID to track for deletion
+                name: nameValue,
+                course: courseValue
+            };
+
+            // Push to array and update UI
+            studentsArray.push(newStudent);
+            renderStudents();
+
+            // Clear inputs
+            nameInp.value = "";
+            courseInp.value = "";
+        });
+
+        // 4. Dynamic Rendering Function
+        function renderStudents() {
+            // Clear the old container list first
+            studentsContainer.innerHTML = "";
+
+            studentsArray.forEach((student) => {
+                // Create Card Container
+                const card = document.createElement('div');
+                card.classList.add('student-card');
+
+                // Create Info Paragraphs
+                const pName = document.createElement('p');
+                pName.textContent = `Name: ${student.name}`;
+
+                const pCourse = document.createElement('p');
+                pCourse.textContent = `Course: ${student.course}`;
+
+                // Create Delete Button
+                const deleteBtn = document.createElement('button');
+                deleteBtn.textContent = "Delete";
+                deleteBtn.classList.add('delete-btn');
+
+                // 5. Handle Deletion
+                deleteBtn.addEventListener('click', () => {
+                    // Filter out this student from our array data source
+                    studentsArray = studentsArray.filter(s => s.id !== student.id);
+                    // Re-render everything to update UI and total count
+                    renderStudents();
+                });
+
+                // Assemble Card Components
+                card.appendChild(pName);
+                card.appendChild(pCourse);
+                card.appendChild(deleteBtn);
+
+                // Add Card to Main List Container
+                studentsContainer.appendChild(card);
+            });
+
+            // Update Total Counter Display
+            totalCount.textContent = `Total Students: ${studentsArray.length}`;
+        }
+    </script>
+</body>
+
+</html>
