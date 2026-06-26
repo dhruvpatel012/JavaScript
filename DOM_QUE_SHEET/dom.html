@@ -26,19 +26,31 @@
 
 <body>
 
-    <div class="card">
-        <h2 id="head">JavaScript</h2>
-        <button id="btn">Delete</button>
-    </div> 
-    
-    <script>
-    const h2 =document.getElementById('head')
-    const card = document.getElementById('card')
-    const btn = document.getElementById('btn')
+    <h1 id="head">0</h1>
+    <button id="add">+</button>
+    <button id="minus">-</button>
 
-    btn.addEventListener('click' , () =>{
-       btn.parentElement.remove()
-    })
+    <script>
+        const h1 = document.getElementById('head')
+        const add = document.getElementById('add')
+        const minus = document.getElementById('minus')
+
+
+        let count = 0
+
+        add.addEventListener('click', increment);
+        minus.addEventListener('click', decrement);
+
+
+        function increment() {
+            count++;
+            h1.textContent = count; // Updates the text directly
+        }
+
+        function decrement() {
+            count--;
+            h1.textContent = count;
+        }
 
     </script>
 </body>
